@@ -63,6 +63,21 @@ eslintTester.addRuleTest("lib/rules/no-throw-literal", {
                 message: "Do not throw undefined.",
                 type: "ThrowStatement"
             }]
+        },
+        // String concatenation
+        {
+            code: "throw 'a' + 'b';",
+            errors: [{
+                message: "Do not throw a literal.",
+                type: "ThrowStatement"
+            }]
+        },
+        {
+            code: "var b = new Error(); throw 'a' + b;",
+            errors: [{
+                message: "Do not throw a literal.",
+                type: "ThrowStatement"
+            }]
         }
     ]
 });
